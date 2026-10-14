@@ -1,0 +1,103 @@
+/* Komponen Smart Yatim — plain CSS, tanpa build step */
+
+body {
+  background: #f8f9fa;
+  color: #1e293b;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.btn-primary {
+  background: #28a745;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-primary:hover {
+  background: #1f8a38;
+}
+.btn-purple {
+  background: #7b1fa2;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-purple:hover {
+  background: #611886;
+}
+.btn-outline {
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+}
+.btn-outline:hover {
+  border-color: #28a745;
+  color: #28a745;
+}
+.btn-ghost {
+  color: #475569;
+}
+.btn-ghost:hover {
+  background: #f1f5f9;
+}
+
+/* Kartu & form */
+.card {
+  border-radius: 1rem;
+  border: 1px solid #f1f5f9;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+.input::placeholder {
+  color: #94a3b8;
+}
+.input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+/* Progress bar */
+.progress-track {
+  height: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: #f1f5f9;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #28a745, #34d399);
+  transition: width 0.7s ease;
+}

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin — Smart Yatim</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="assets/tailwind.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="min-h-screen bg-brand-gray">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col border-r border-slate-100 bg-white transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0">
+      <div class="flex h-16 items-center gap-2.5 border-b border-slate-100 px-5">
+        <img src="assets/images/logo.svg" alt="Logo Smart Yatim" class="h-9 w-9 rounded-lg bg-brand-green/10 p-1" />
+        <div>
+          <p class="text-sm font-extrabold leading-tight text-slate-800">Smart Yatim</p>
+          <p class="text-[10px] leading-tight text-slate-400">Panel Internal</p>
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-1 overflow-y-auto p-3 text-sm font-semibold text-slate-600">
+        <button data-view="dashboard" class="nav-admin flex w-full items-center gap-3 rounded-xl bg-brand-green-light px-3 py-2.5 text-brand-green">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM13.5 6A2.25 2.25 0 0115.75 3.75H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+          Dashboard
+        </button>
+        <button data-view="anak" class="nav-admin flex w-full items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+          Data Anak Asuh
+        </button>
+        <button data-view="kebutuhan" class="nav-admin flex w-full items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+          Data Kebutuhan
+        </button>
+        <button data-view="kegiatan" class="nav-admin flex w-full items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+          Laporan Kegiatan
+        </button>
+        <button data-view="anggaran" class="nav-admin flex w-full items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Realisasi Anggaran
+        </button>
+        <button data-view="perkembangan" class="nav-admin flex w-full items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+          Laporan Perkembangan
+        </button>
+        <button data-view="orta" class="nav-admin flex w-full items-center gap-3 rounded-xl bg-brand-purple-light px-3 py-2.5 text-brand-purple">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          Laporan Orta
+        </button>
+      </nav>
+
+      <div class="border-t border-slate-100 p-3">
+        <a href="index.html" class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-purple hover:bg-brand-purple-light">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+          Ganti Pengguna
+        </a>
+      </div>
+    </aside>
+    <div id="sidebar-overlay" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden" onclick="toggleSidebar()"></div>
+
+    <!-- Konten -->
+    <div class="min-w-0 flex-1">
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-100 bg-white/95 px-4 backdrop-blur sm:px-6">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleSidebar()" class="rounded-xl p-2 text-slate-600 hover:bg-slate-100 lg:hidden" aria-label="Menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+          </button>
+          <div>
+            <h1 id="judul-view" class="text-base font-extrabold text-slate-800">Dashboard</h1>
+            <p id="subjudul-view" class="text-[11px] text-slate-400">Ringkasan operasional</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span id="badge-role" class="rounded-full bg-brand-green-light px-3 py-1 text-[11px] font-bold text-brand-green">Admin</span>
+          <div id="avatar-user" class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-emerald-400 text-xs font-bold text-white"></div>
+        </div>
+      </header>
+
+      <main class="p-4 sm:p-6">
+        <!-- ============ VIEW: DASHBOARD ============ -->
+        <section id="view-dashboard">
+          <div class="grid grid-cols-2 gap-3 xl:grid-cols-4">
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Anak Asuh</p>
+              <p id="stat-anak" class="mt-1 text-2xl font-extrabold text-slate-800">0</p>
+              <p class="mt-1 text-[11px] text-brand-green">Terdaftar aktif</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Donatur Aktif</p>
+              <p class="mt-1 text-2xl font-extrabold text-brand-green">1.200</p>
+              <p class="mt-1 text-[11px] text-slate-400">Periode 2026</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Entri Laporan</p>
+              <p id="stat-laporan" class="mt-1 text-2xl font-extrabold text-brand-purple">0</p>
+              <p class="mt-1 text-[11px] text-slate-400">Kebutuhan + kegiatan + anggaran + perkembangan</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Anggaran Tersalur</p>
+              <p id="stat-anggaran" class="mt-1 text-2xl font-extrabold text-slate-800">Rp0</p>
+              <p class="mt-1 text-[11px] text-slate-400">Dari realisasi tercatat</p>
+            </div>
+          </div>
+
+          <div class="mt-5 grid gap-4 lg:grid-cols-2">
+            <div class="card p-5">
+              <h3 class="text-sm font-extrabold text-slate-800">Aktivitas Terbaru</h3>
+              <div id="aktivitas-terbaru" class="mt-3 space-y-2.5"></div>
+            </div>
+            <div class="card p-5">
+              <h3 class="text-sm font-extrabold text-slate-800">Akses Cepat</h3>
+              <div class="mt-3 grid grid-cols-2 gap-2.5">
+                <button onclick="bukaView('anak')" class="btn btn-outline justify-start text-xs">+ Tambah Anak</button>
+                <button onclick="bukaView('kegiatan')" class="btn btn-outline justify-start text-xs">+ Input Kegiatan</button>
+                <button onclick="bukaView('anggaran')" class="btn btn-outline justify-start text-xs">+ Input Anggaran</button>
+                <button onclick="bukaView('orta')" class="btn btn-purple justify-start text-xs">Lihat Laporan Orta</button>
+              </div>
+              <div id="catatan-role" class="mt-4 rounded-xl bg-brand-gray p-3 text-xs leading-relaxed text-slate-500"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: DATA ANAK ============ -->
+        <section id="view-anak" class="hidden">
+          <div class="flex items-center justify-between">
+            <p class="text-sm text-slate-500"><span id="jumlah-anak" class="font-bold text-slate-700"></span> anak asuh terdaftar</p>
+            <button id="btn-tambah-anak" class="btn btn-primary text-xs">+ Tambah Anak</button>
+          </div>
+          <div class="card mt-3 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[720px] text-left text-sm">
+                <thead class="bg-brand-gray text-[11px] uppercase tracking-wide text-slate-400">
+                  <tr>
+                    <th class="px-4 py-3 font-bold">Anak</th>
+                    <th class="px-4 py-3 font-bold">Sebab</th>
+                    <th class="px-4 py-3 font-bold">Provinsi</th>
+                    <th class="px-4 py-3 font-bold">Sekolah</th>
+                    <th class="px-4 py-3 text-right font-bold">Target</th>
+                    <th class="px-4 py-3 text-center font-bold">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tabel-anak" class="divide-y divide-slate-100 text-xs"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: KEBUTUHAN ============ -->
+        <section id="view-kebutuhan" class="hidden">
+          <div class="grid gap-4 lg:grid-cols-5">
+            <form id="form-kebutuhan" class="card space-y-3 p-5 lg:col-span-2">
+              <h3 class="text-sm font-extrabold text-slate-800">Input Data Kebutuhan</h3>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Anak Asuh</label>
+                <select name="anak" class="input select-anak" required></select>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Jenis Kebutuhan</label>
+                <select name="jenis" class="input" required>
+                  <option value="Pangan">Pangan</option>
+                  <option value="Pendidikan">Pendidikan</option>
+                  <option value="Kesehatan">Kesehatan</option>
+                  <option value="Pakaian">Pakaian</option>
+                  <option value="Kebersihan">Kebersihan</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Nominal</label>
+                  <input name="nominal" type="number" min="1000" class="input" placeholder="Rp" required />
+                </div>
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Tanggal</label>
+                  <input name="tanggal" type="date" class="input" required />
+                </div>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Catatan</label>
+                <textarea name="catatan" rows="2" class="input resize-none" placeholder="Keterangan tambahan..."></textarea>
+              </div>
+              <button class="btn btn-primary w-full">Simpan Kebutuhan</button>
+            </form>
+
+            <div class="lg:col-span-3">
+              <div class="card overflow-hidden">
+                <p class="border-b border-slate-100 px-4 py-3 text-sm font-extrabold text-slate-800">Riwayat Kebutuhan</p>
+                <div id="daftar-kebutuhan" class="max-h-[480px] divide-y divide-slate-100 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: KEGIATAN ============ -->
+        <section id="view-kegiatan" class="hidden">
+          <div class="grid gap-4 lg:grid-cols-5">
+            <form id="form-kegiatan" class="card space-y-3 p-5 lg:col-span-2">
+              <h3 class="text-sm font-extrabold text-slate-800">Input Laporan Kegiatan</h3>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Anak Asuh</label>
+                <select name="anak" class="input select-anak" required></select>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Tanggal</label>
+                  <input name="tanggal" type="date" class="input" required />
+                </div>
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Jenis Kegiatan</label>
+                  <select name="jenis" class="input" required>
+                    <option value="Belajar">Belajar</option>
+                    <option value="Mengaji">Mengaji</option>
+                    <option value="Olahraga">Olahraga</option>
+                    <option value="Keterampilan">Keterampilan</option>
+                    <option value="Sosial">Kegiatan Sosial</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Deskripsi</label>
+                <textarea name="deskripsi" rows="3" class="input resize-none" placeholder="Jelaskan kegiatan yang dilakukan..." required></textarea>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Dokumentasi Foto</label>
+                <label class="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-200 px-4 py-5 text-xs text-slate-400 hover:border-brand-green hover:text-brand-green">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 19.5h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z"/></svg>
+                  Pilih foto (simulasi)
+                  <input type="file" class="hidden" accept="image/*" onchange="UI.toast('Foto dipilih — penyimpanan simulasi','info')" />
+                </label>
+              </div>
+              <button class="btn btn-primary w-full">Simpan Kegiatan</button>
+            </form>
+
+            <div class="lg:col-span-3">
+              <div class="card overflow-hidden">
+                <p class="border-b border-slate-100 px-4 py-3 text-sm font-extrabold text-slate-800">Riwayat Kegiatan</p>
+                <div id="daftar-kegiatan" class="max-h-[480px] divide-y divide-slate-100 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: ANGGARAN ============ -->
+        <section id="view-anggaran" class="hidden">
+          <div class="grid gap-4 lg:grid-cols-5">
+            <form id="form-anggaran" class="card space-y-3 p-5 lg:col-span-2">
+              <h3 class="text-sm font-extrabold text-slate-800">Input Realisasi Anggaran</h3>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Anak Asuh</label>
+                <select name="anak" class="input select-anak" required></select>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Tanggal</label>
+                  <input name="tanggal" type="date" class="input" required />
+                </div>
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Kategori</label>
+                  <select name="kategori" class="input" required>
+                    <option value="Pangan">Pangan</option>
+                    <option value="Pendidikan">Pendidikan</option>
+                    <option value="Kesehatan">Kesehatan</option>
+                    <option value="Sarana">Sarana</option>
+                    <option value="Lainnya">Lainnya</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Nominal</label>
+                <input name="nominal" type="number" min="1000" class="input" placeholder="Rp" required />
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Keterangan</label>
+                <textarea name="keterangan" rows="2" class="input resize-none" placeholder="Penggunaan anggaran..." required></textarea>
+              </div>
+              <label class="flex items-center gap-2 rounded-xl bg-brand-gray px-3 py-2.5 text-xs text-slate-600">
+                <input type="checkbox" name="orta" class="h-4 w-4 accent-[#7B1FA2]" checked />
+                Terikat dengan Laporan Orta
+              </label>
+              <button class="btn btn-primary w-full">Simpan Anggaran</button>
+            </form>
+
+            <div class="lg:col-span-3">
+              <div class="card overflow-hidden">
+                <div class="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+                  <p class="text-sm font-extrabold text-slate-800">Riwayat Realisasi</p>
+                  <p class="text-xs text-slate-400">Total: <span id="total-anggaran" class="font-bold text-slate-700">Rp0</span></p>
+                </div>
+                <div id="daftar-anggaran" class="max-h-[480px] divide-y divide-slate-100 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: PERKEMBANGAN ============ -->
+        <section id="view-perkembangan" class="hidden">
+          <div class="grid gap-4 lg:grid-cols-5">
+            <form id="form-perkembangan" class="card space-y-3 p-5 lg:col-span-2">
+              <h3 class="text-sm font-extrabold text-slate-800">Input Laporan Perkembangan</h3>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Anak Asuh</label>
+                <select name="anak" class="input select-anak" required></select>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Tanggal</label>
+                  <input name="tanggal" type="date" class="input" required />
+                </div>
+                <div>
+                  <label class="mb-1.5 block text-xs font-semibold text-slate-600">Aspek</label>
+                  <select name="aspek" class="input" required>
+                    <option value="Pendidikan">Pendidikan</option>
+                    <option value="Kesehatan">Kesehatan</option>
+                    <option value="Kondisi Sosial">Kondisi Sosial</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Status Evaluasi</label>
+                <select name="status" class="input" required>
+                  <option value="Sangat Baik">Sangat Baik</option>
+                  <option value="Baik" selected>Baik</option>
+                  <option value="Perlu Perhatian">Perlu Perhatian</option>
+                </select>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold text-slate-600">Catatan Evaluasi</label>
+                <textarea name="catatan" rows="3" class="input resize-none" placeholder="Hasil observasi / evaluasi..." required></textarea>
+              </div>
+              <button class="btn btn-primary w-full">Simpan Perkembangan</button>
+            </form>
+
+            <div class="lg:col-span-3">
+              <div class="card overflow-hidden">
+                <p class="border-b border-slate-100 px-4 py-3 text-sm font-extrabold text-slate-800">Riwayat Perkembangan</p>
+                <div id="daftar-perkembangan" class="max-h-[480px] divide-y divide-slate-100 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VIEW: LAPORAN ORTA ============ -->
+        <section id="view-orta" class="hidden">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p class="text-sm text-slate-500">Rekapitulasi otomatis: anggaran + perkembangan tiap anak asuh.</p>
+              <p class="text-[11px] text-slate-400">Terakhir diperbarui: <span id="orta-waktu">—</span></p>
+            </div>
+            <button id="btn-rekap" class="btn btn-purple text-xs">⟳ Rekap Otomatis</button>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Total Realisasi</p>
+              <p id="orta-total" class="mt-1 text-xl font-extrabold text-slate-800">Rp0</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Entri Anggaran</p>
+              <p id="orta-jumlah-anggaran" class="mt-1 text-xl font-extrabold text-brand-green">0</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Entri Perkembangan</p>
+              <p id="orta-jumlah-perkembangan" class="mt-1 text-xl font-extrabold text-brand-purple">0</p>
+            </div>
+            <div class="card p-4">
+              <p class="text-xs font-semibold text-slate-400">Perlu Perhatian</p>
+              <p id="orta-perhatian" class="mt-1 text-xl font-extrabold text-red-500">0</p>
+            </div>
+          </div>
+
+          <div class="card mt-4 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[760px] text-left text-sm">
+                <thead class="bg-brand-gray text-[11px] uppercase tracking-wide text-slate-400">
+                  <tr>
+                    <th class="px-4 py-3 font-bold">Anak Asuh</th>
+                    <th class="px-4 py-3 text-right font-bold">Target</th>
+                    <th class="px-4 py-3 text-right font-bold">Realisasi Anggaran</th>
+                    <th class="px-4 py-3 text-center font-bold">Kegiatan</th>
+                    <th class="px-4 py-3 text-center font-bold">Kebutuhan</th>
+                    <th class="px-4 py-3 font-bold">Perkembangan Terakhir</th>
+                  </tr>
+                </thead>
+                <tbody id="tabel-orta" class="divide-y divide-slate-100 text-xs"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal Tambah/Edit Anak -->
+  <div id="modal-anak" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="card max-h-[90vh] w-full max-w-lg overflow-y-auto p-5">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 id="modal-anak-judul" class="text-base font-extrabold text-slate-800">Tambah Anak Asuh</h3>
+        <button onclick="tutupModalAnak()" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="form-anak" class="space-y-3">
+        <input type="hidden" name="editId" />
+        <div class="grid grid-cols-2 gap-3">
+          <div class="col-span-2">
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Nama Lengkap</label>
+            <input name="nama" class="input" required />
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Jenis Kelamin</label>
+            <select name="jenis" class="input">
+              <option value="l">Laki-laki</option>
+              <option value="p">Perempuan</option>
+            </select>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Umur</label>
+            <input name="umur" type="number" min="1" max="25" class="input" required />
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Sebab</label>
+            <select name="sebab" class="input">
+              <option value="Yatim">Yatim</option>
+              <option value="Piatu">Piatu</option>
+              <option value="Dhuafa">Dhuafa</option>
+            </select>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Provinsi</label>
+            <select name="provinsi" class="input select-provinsi"></select>
+          </div>
+          <div class="col-span-2">
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Sekolah</label>
+            <input name="sekolah" class="input" required />
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Kota</label>
+            <input name="kota" class="input" required />
+          </div>
+          <div>
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Target Dana</label>
+            <input name="target" type="number" min="100000" step="25000" class="input" required />
+          </div>
+          <div class="col-span-2">
+            <label class="mb-1.5 block text-xs font-semibold text-slate-600">Alamat</label>
+            <textarea name="alamat" rows="2" class="input resize-none" required></textarea>
+          </div>
+        </div>
+        <button class="btn btn-primary w-full">Simpan</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus -->
+  <div id="modal-hapus" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="card w-full max-w-xs p-5 text-center">
+      <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-50 text-xl">🗑</div>
+      <p class="mt-3 text-sm font-bold text-slate-800">Hapus anak asuh?</p>
+      <p id="hapus-nama" class="mt-1 text-xs text-slate-400"></p>
+      <div class="mt-4 flex gap-2">
+        <button onclick="batalHapus()" class="btn btn-outline flex-1 text-xs">Batal</button>
+        <button onclick="konfirmasiHapus()" class="btn flex-1 bg-red-500 text-xs font-semibold text-white hover:bg-red-600">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    /* ================= ROLE ================= */
+    const pilihan = Store.get("pilihRole", { role: "admin", label: "Admin" });
+    const isAdmin = pilihan.role === "admin";
+
+    document.getElementById("badge-role").textContent = pilihan.label;
+    document.getElementById("badge-role").className = isAdmin
+      ? "rounded-full bg-brand-green-light px-3 py-1 text-[11px] font-bold text-brand-green"
+      : "rounded-full bg-brand-purple-light px-3 py-1 text-[11px] font-bold text-brand-purple";
+    document.getElementById("avatar-user").textContent = (pilihan.label || "A").slice(0, 1).toUpperCase();
+    document.getElementById("catatan-role").innerHTML = isAdmin
+      ? "<b class='text-slate-700'>Mode Admin</b> — akses penuh: tambah, ubah, dan hapus data anak asuh."
+      : "<b class='text-slate-700'>Mode Petugas Lapangan</b> — data anak asuh hanya dapat dilihat; Anda dapat menginput kebutuhan, kegiatan, anggaran, dan perkembangan.";
+
+    /* ================= NAVIGASI ================= */
+    const VIEWS = {
+      dashboard: ["Dashboard", "Ringkasan operasional"],
+      anak: ["Data Anak Asuh", "Kelola profil anak asuh"],
+      kebutuhan: ["Data Kebutuhan", "Input kebutuhan rutin anak"],
+      kegiatan: ["Laporan Kegiatan", "Input aktivitas harian"],
+      anggaran: ["Realisasi Anggaran", "Penggunaan anggaran per anak"],
+      perkembangan: ["Laporan Perkembangan", "Evaluasi berkala anak asuh"],
+      orta: ["Laporan Orta", "Rekapitulasi terintegrasi"],
+    };
+
+    function toggleSidebar() {
+      if (window.innerWidth >= 1024) return;
+      const sb = document.getElementById("sidebar");
+      const ov = document.getElementById("sidebar-overlay");
+      const buka = sb.classList.contains("-translate-x-full");
+      sb.classList.toggle("-translate-x-full", !buka);
+      sb.classList.toggle("-translate-x-0", buka);
+      ov.classList.toggle("hidden", !buka);
+      document.body.classList.toggle("overflow-hidden", buka);
+    }
+
+    function bukaView(nama) {
+      document.querySelectorAll("section[id^='view-']").forEach((s) => s.classList.add("hidden"));
+      document.getElementById("view-" + nama).classList.remove("hidden");
+      document.querySelectorAll(".nav-admin").forEach((b) => {
+        const aktif = b.dataset.view === nama;
+        b.classList.toggle("bg-brand-green-light", aktif && nama !== "orta");
+        b.classList.toggle("text-brand-green", aktif && nama !== "orta");
+        b.classList.toggle("bg-brand-purple-light", aktif && nama === "orta");
+        b.classList.toggle("text-brand-purple", aktif && nama === "orta");
+        b.classList.toggle("hover:bg-slate-50", !aktif);
+      });
+      const [judul, sub] = VIEWS[nama];
+      document.getElementById("judul-view").textContent = judul;
+      document.getElementById("subjudul-view").textContent = sub;
+      if (window.innerWidth < 1024 && !document.getElementById("sidebar").classList.contains("-translate-x-full")) toggleSidebar();
+      window.scrollTo({ top: 0 });
+    }
+
+    document.querySelectorAll(".nav-admin").forEach((btn) =>
+      btn.addEventListener("click", () => bukaView(btn.dataset.view))
+    );
+
+    /* ================= DATA ANAK (CRUD) ================= */
+    function getDataAnak() {
+      return Store.get("dataAnak", DATA_ANAK);
+    }
+    function setDataAnak(list) {
+      Store.set("dataAnak", list);
+    }
+
+    function renderAnak() {
+      const list = getDataAnak();
+      document.getElementById("jumlah-anak").textContent = list.length;
+      document.getElementById("tabel-anak").innerHTML = list
+        .map((a) => `
+        <tr class="hover:bg-slate-50">
+          <td class="px-4 py-3">
+            <div class="flex items-center gap-2.5">
+              ${UI.avatarHtml(a.nama, a.jenis, "h-9 w-9 text-xs")}
+              <div>
+                <p class="font-bold text-slate-800">${UI.escapeHtml(a.nama)}</p>
+                <p class="text-[10px] text-slate-400">${a.id} · ${a.umur} th</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-4 py-3"><span class="rounded-full bg-brand-purple-light px-2 py-0.5 text-[10px] font-bold text-brand-purple">${UI.escapeHtml(a.sebab)}</span></td>
+          <td class="px-4 py-3 text-slate-500">${UI.escapeHtml(a.provinsi)}</td>
+          <td class="px-4 py-3 text-slate-500">${UI.escapeHtml(a.sekolah)}</td>
+          <td class="px-4 py-3 text-right font-bold text-slate-700">${UI.formatRupiah(a.target)}</td>
+          <td class="px-4 py-3 text-center">
+            <div class="flex justify-center gap-1.5">
+              <button onclick="editAnak('${a.id}')" class="rounded-lg bg-slate-100 px-2.5 py-1.5 text-[10px] font-bold text-slate-600 hover:bg-brand-green-light hover:text-brand-green">Edit</button>
+              ${isAdmin ? `<button onclick="mintaHapus('${a.id}')" class="rounded-lg bg-red-50 px-2.5 py-1.5 text-[10px] font-bold text-red-500 hover:bg-red-100">Hapus</button>` : ""}
+            </div>
+          </td>
+        </tr>`)
+        .join("");
+
+      if (!isAdmin) {
+        document.getElementById("btn-tambah-anak").classList.add("hidden");
+      }
+
+      document.querySelectorAll(".select-anak").forEach((sel) => {
+        const nilai = sel.value;
+        sel.innerHTML = list.map((a) => `<option value="${a.id}">${UI.escapeHtml(a.nama)} (${a.id})</option>`).join("");
+        if (nilai) sel.value = nilai;
+      });
+    }
+
+    const modalAnak = document.getElementById("modal-anak");
+    function tutupModalAnak() {
+      modalAnak.classList.add("hidden");
+      modalAnak.classList.remove("flex");
+    }
+
+    document.getElementById("btn-tambah-anak").addEventListener("click", () => {
+      if (!isAdmin) return;
+      const form = document.getElementById("form-anak");
+      form.reset();
+      form.editId.value = "";
+      document.getElementById("modal-anak-judul").textContent = "Tambah Anak Asuh";
+      modalAnak.classList.remove("hidden");
+      modalAnak.classList.add("flex");
+    });
+
+    function editAnak(id) {
+      const a = getDataAnak().find((x) => x.id === id);
+      if (!a) return;
+      const form = document.getElementById("form-anak");
+      form.editId.value = a.id;
+      form.nama.value = a.nama;
+      form.jenis.value = a.jenis;
+      form.umur.value = a.umur;
+      form.sebab.value = a.sebab;
+      form.provinsi.value = a.provinsi;
+      form.sekolah.value = a.sekolah;
+      form.kota.value = a.kota;
+      form.target.value = a.target;
+      form.alamat.value = a.alamat;
+      document.getElementById("modal-anak-judul").textContent = "Edit Anak Asuh";
+      modalAnak.classList.remove("hidden");
+      modalAnak.classList.add("flex");
+    }
+
+    document.getElementById("form-anak").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const list = getDataAnak();
+      if (f.editId.value) {
+        const a = list.find((x) => x.id === f.editId.value);
+        Object.assign(a, {
+          nama: f.nama.value.trim(), jenis: f.jenis.value, umur: Number(f.umur.value),
+          sebab: f.sebab.value, provinsi: f.provinsi.value, sekolah: f.sekolah.value.trim(),
+          kota: f.kota.value.trim(), target: Number(f.target.value), alamat: f.alamat.value.trim(),
+        });
+        UI.toast(`Data ${a.nama} diperbarui`, "sukses");
+      } else {
+        const nomor = String(list.length + 1).padStart(3, "0");
+        list.push({
+          id: "YTM-" + nomor, nama: f.nama.value.trim(), jenis: f.jenis.value,
+          umur: Number(f.umur.value), tanggalLahir: "—", sekolah: f.sekolah.value.trim(),
+          provinsi: f.provinsi.value, kota: f.kota.value.trim(), alamat: f.alamat.value.trim(),
+          sebab: f.sebab.value, keteranganSebab: "Keterangan menyusul.",
+          target: Number(f.target.value), terkumpul: 0, jumlahDonatur: 0, kegiatan: [],
+        });
+        UI.toast(`Anak asuh ${f.nama.value.trim()} ditambahkan`, "sukses");
+      }
+      setDataAnak(list);
+      tutupModalAnak();
+      renderAnak();
+      renderDashboard();
+    });
+
+    let idHapus = null;
+    function mintaHapus(id) {
+      if (!isAdmin) return;
+      idHapus = id;
+      const a = getDataAnak().find((x) => x.id === id);
+      document.getElementById("hapus-nama").textContent = a ? a.nama : "";
+      document.getElementById("modal-hapus").classList.remove("hidden");
+      document.getElementById("modal-hapus").classList.add("flex");
+    }
+    function batalHapus() {
+      idHapus = null;
+      document.getElementById("modal-hapus").classList.add("hidden");
+      document.getElementById("modal-hapus").classList.remove("flex");
+    }
+    function konfirmasiHapus() {
+      if (!idHapus) return;
+      const list = getDataAnak().filter((x) => x.id !== idHapus);
+      setDataAnak(list);
+      batalHapus();
+      renderAnak();
+      renderDashboard();
+      UI.toast("Data anak asuh dihapus", "info");
+    }
+
+    /* ================= FORM INPUT (kebutuhan, kegiatan, anggaran, perkembangan) ================= */
+    function daftar(key, fallback = []) {
+      return Store.get(key, fallback);
+    }
+    function tanggalIndo(iso) {
+      if (!iso) return "—";
+      try {
+        return new Date(iso + "T00:00:00").toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+      } catch {
+        return iso;
+      }
+    }
+    function namaAnak(id) {
+      const a = getDataAnak().find((x) => x.id === id);
+      return a ? a.nama : id;
+    }
+
+    function barisRiwayat(warnaIkon, ikon, judul, sub, kanan) {
+      return `
+        <div class="flex items-center gap-3 px-4 py-3">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${warnaIkon} text-sm">${ikon}</div>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-xs font-bold text-slate-800">${judul}</p>
+            <p class="truncate text-[11px] text-slate-400">${sub}</p>
+          </div>
+          <div class="shrink-0 text-right">${kanan}</div>
+        </div>`;
+    }
+
+    function renderKebutuhan() {
+      const list = daftar("kebutuhan");
+      document.getElementById("daftar-kebutuhan").innerHTML = list.length
+        ? list.map((k) => barisRiwayat("bg-amber-50", "🛒",
+            UI.escapeHtml(k.jenis) + " — " + UI.escapeHtml(namaAnak(k.anak)),
+            tanggalIndo(k.tanggal) + (k.catatan ? " · " + UI.escapeHtml(k.catatan) : ""),
+            `<p class="text-xs font-extrabold text-slate-700">${UI.formatRupiah(k.nominal)}</p>`)).join("")
+        : emptyBox("Belum ada data kebutuhan");
+    }
+
+    function renderKegiatan() {
+      const list = daftar("kegiatan");
+      document.getElementById("daftar-kegiatan").innerHTML = list.length
+        ? list.map((k) => barisRiwayat("bg-brand-green-light", "📅",
+            UI.escapeHtml(k.jenis) + " — " + UI.escapeHtml(namaAnak(k.anak)),
+            tanggalIndo(k.tanggal) + " · " + UI.escapeHtml(k.deskripsi),
+            `<span class="rounded-full bg-brand-green-light px-2 py-0.5 text-[9px] font-bold text-brand-green">Tersimpan</span>`)).join("")
+        : emptyBox("Belum ada laporan kegiatan");
+    }
+
+    function renderAnggaran() {
+      const list = daftar("anggaran");
+      const total = list.reduce((s, a) => s + a.nominal, 0);
+      document.getElementById("total-anggaran").textContent = UI.formatRupiah(total);
+      document.getElementById("daftar-anggaran").innerHTML = list.length
+        ? list.map((a) => barisRiwayat("bg-sky-50", "💸",
+            UI.escapeHtml(a.kategori) + " — " + UI.escapeHtml(namaAnak(a.anak)),
+            tanggalIndo(a.tanggal) + " · " + UI.escapeHtml(a.keterangan) + (a.orta ? " · 📌 Orta" : ""),
+            `<p class="text-xs font-extrabold text-slate-700">${UI.formatRupiah(a.nominal)}</p>`)).join("")
+        : emptyBox("Belum ada realisasi anggaran");
+    }
+
+    function renderPerkembangan() {
+      const list = daftar("perkembangan");
+      const warna = { "Sangat Baik": "bg-brand-green-light text-brand-green", Baik: "bg-sky-50 text-sky-600", "Perlu Perhatian": "bg-red-50 text-red-500" };
+      document.getElementById("daftar-perkembangan").innerHTML = list.length
+        ? list.map((p) => barisRiwayat("bg-brand-purple-light", "📈",
+            UI.escapeHtml(p.aspek) + " — " + UI.escapeHtml(namaAnak(p.anak)),
+            tanggalIndo(p.tanggal) + " · " + UI.escapeHtml(p.catatan),
+            `<span class="rounded-full ${warna[p.status] || "bg-slate-100 text-slate-500"} px-2 py-0.5 text-[9px] font-bold">${UI.escapeHtml(p.status)}</span>`)).join("")
+        : emptyBox("Belum ada laporan perkembangan");
+    }
+
+    function emptyBox(teks) {
+      return `<p class="px-4 py-8 text-center text-xs text-slate-400">${teks}</p>`;
+    }
+
+    function pasangForm(idForm, key, renderFn, pesan) {
+      document.getElementById(idForm).addEventListener("submit", (e) => {
+        e.preventDefault();
+        const f = e.target;
+        const entri = Object.fromEntries(new FormData(f).entries());
+        entri.nominal = Number(entri.nominal || 0);
+        if (entri.orta !== undefined) entri.orta = f.orta.checked;
+        const list = Store.get(key, []);
+        list.unshift({ ...entri, waktu: Date.now() });
+        Store.set(key, list);
+        f.reset();
+        if (f.tanggal) f.tanggal.value = new Date().toISOString().slice(0, 10);
+        renderFn();
+        renderDashboard();
+        UI.toast(pesan, "sukses");
+      });
+    }
+
+    pasangForm("form-kebutuhan", "kebutuhan", renderKebutuhan, "Data kebutuhan tersimpan");
+    pasangForm("form-kegiatan", "kegiatan", renderKegiatan, "Laporan kegiatan tersimpan");
+    pasangForm("form-anggaran", "anggaran", renderAnggaran, "Realisasi anggaran tersimpan");
+    pasangForm("form-perkembangan", "perkembangan", renderPerkembangan, "Laporan perkembangan tersimpan");
+
+    /* ================= DASHBOARD ================= */
+    function renderDashboard() {
+      document.getElementById("stat-anak").textContent = getDataAnak().length;
+      const total =
+        daftar("kebutuhan").length + daftar("kegiatan").length +
+        daftar("anggaran").length + daftar("perkembangan").length;
+      document.getElementById("stat-laporan").textContent = total;
+      const anggaran = daftar("anggaran").reduce((s, a) => s + a.nominal, 0);
+      document.getElementById("stat-anggaran").textContent = UI.formatRupiah(anggaran);
+
+      const terbaru = [
+        ...daftar("kegiatan").map((k) => ({ t: k.waktu, ikon: "📅", w: "bg-brand-green-light", teks: "Kegiatan " + k.jenis + " — " + namaAnak(k.anak) })),
+        ...daftar("anggaran").map((a) => ({ t: a.waktu, ikon: "💸", w: "bg-sky-50", teks: "Anggaran " + UI.formatRupiah(a.nominal) + " — " + namaAnak(a.anak) })),
+        ...daftar("kebutuhan").map((k) => ({ t: k.waktu, ikon: "🛒", w: "bg-amber-50", teks: "Kebutuhan " + k.jenis + " — " + namaAnak(k.anak) })),
+        ...daftar("perkembangan").map((p) => ({ t: p.waktu, ikon: "📈", w: "bg-brand-purple-light", teks: "Perkembangan " + p.aspek + " — " + namaAnak(p.anak) })),
+      ]
+        .sort((a, b) => (b.t || 0) - (a.t || 0))
+        .slice(0, 5);
+
+      document.getElementById("aktivitas-terbaru").innerHTML = terbaru.length
+        ? terbaru
+            .map(
+              (a) => `
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${a.w} text-sm">${a.ikon}</div>
+          <p class="truncate text-xs text-slate-600">${UI.escapeHtml(a.teks)}</p>
+        </div>`
+            )
+            .join("")
+        : `<p class="text-xs text-slate-400">Belum ada aktivitas. Mulai input laporan.</p>`;
+    }
+
+    /* ================= LAPORAN ORTA ================= */
+    function renderOrta(suarai = false) {
+      const list = getDataAnak();
+      const anggaran = daftar("anggaran");
+      const kegiatan = daftar("kegiatan");
+      const kebutuhan = daftar("kebutuhan");
+      const perkembangan = daftar("perkembangan");
+
+      const warnaStatus = { "Sangat Baik": "bg-brand-green-light text-brand-green", Baik: "bg-sky-50 text-sky-600", "Perlu Perhatian": "bg-red-50 text-red-500" };
+
+      document.getElementById("tabel-orta").innerHTML = list
+        .map((a) => {
+          const totAng = anggaran.filter((x) => x.anak === a.id).reduce((s, x) => s + x.nominal, 0);
+          const jmlKegiatan = kegiatan.filter((x) => x.anak === a.id).length;
+          const jmlKebutuhan = kebutuhan.filter((x) => x.anak === a.id).length;
+          const terakhir = perkembangan.find((x) => x.anak === a.id);
+          return `
+          <tr class="hover:bg-slate-50">
+            <td class="px-4 py-3">
+              <p class="font-bold text-slate-800">${UI.escapeHtml(a.nama)}</p>
+              <p class="text-[10px] text-slate-400">${a.id}</p>
+            </td>
+            <td class="px-4 py-3 text-right text-slate-500">${UI.formatRupiah(a.target)}</td>
+            <td class="px-4 py-3 text-right font-bold ${totAng > 0 ? "text-brand-green" : "text-slate-300"}">${UI.formatRupiah(totAng)}</td>
+            <td class="px-4 py-3 text-center ${jmlKegiatan ? "text-slate-600" : "text-slate-300"}">${jmlKegiatan}</td>
+            <td class="px-4 py-3 text-center ${jmlKebutuhan ? "text-slate-600" : "text-slate-300"}">${jmlKebutuhan}</td>
+            <td class="px-4 py-3">
+              ${terakhir
+                ? `<span class="rounded-full ${warnaStatus[terakhir.status] || "bg-slate-100 text-slate-500"} px-2 py-0.5 text-[9px] font-bold">${UI.escapeHtml(terakhir.status)}</span>
+                   <p class="mt-1 text-[10px] text-slate-400">${UI.escapeHtml(terakhir.aspek)} · ${tanggalIndo(terakhir.tanggal)}</p>`
+                : `<span class="text-[10px] text-slate-300">Belum ada data</span>`}
+            </td>
+          </tr>`;
+        })
+        .join("");
+
+      const total = anggaran.reduce((s, a) => s + a.nominal, 0);
+      document.getElementById("orta-total").textContent = UI.formatRupiah(total);
+      document.getElementById("orta-jumlah-anggaran").textContent = anggaran.length;
+      document.getElementById("orta-jumlah-perkembangan").textContent = perkembangan.length;
+      document.getElementById("orta-perhatian").textContent = perkembangan.filter((p) => p.status === "Perlu Perhatian").length;
+      document.getElementById("orta-waktu").textContent = new Date().toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+      if (suarai) UI.toast("Rekapitulasi Laporan Orta diperbarui otomatis ✅", "sukses");
+    }
+
+    document.getElementById("btn-rekap").addEventListener("click", () => renderOrta(true));
+
+    /* ================= SEED DATA CONTOH ================= */
+    function seed() {
+      if (Store.get("seeded")) return;
+      const hari = (n) => new Date(Date.now() - n * 86400000).toISOString().slice(0, 10);
+      Store.set("anggaran", [
+        { anak: "YTM-001", tanggal: hari(2), kategori: "Pendidikan", nominal: 175000, keterangan: "Buku tulis & alat tulis semester ganjil", orta: true, waktu: Date.now() - 2 * 86400000 },
+        { anak: "YTM-001", tanggal: hari(9), kategori: "Pangan", nominal: 320000, keterangan: "Paket gizi harian 2 pekan", orta: true, waktu: Date.now() - 9 * 86400000 },
+        { anak: "YTM-003", tanggal: hari(5), kategori: "Kesehatan", nominal: 145000, keterangan: "Kontrol kesehatan & vitamin", orta: true, waktu: Date.now() - 5 * 86400000 },
+        { anak: "YTM-005", tanggal: hari(1), kategori: "Pendidikan", nominal: 260000, keterangan: "Biaya les tambahan ujian", orta: true, waktu: Date.now() - 86400000 },
+      ]);
+      Store.set("kegiatan", [
+        { anak: "YTM-001", tanggal: hari(1), jenis: "Belajar", deskripsi: "Bimbingan belajar persiapan UAS", orta: false, waktu: Date.now() - 86400000 },
+        { anak: "YTM-004", tanggal: hari(3), jenis: "Mengaji", deskripsi: "Setoran hafalan Juz Amma", orta: false, waktu: Date.now() - 3 * 86400000 },
+      ]);
+      Store.set("kebutuhan", [
+        { anak: "YTM-002", tanggal: hari(4), jenis: "Pangan", nominal: 240000, catatan: "Beras & lauk pauk pekanan", orta: false, waktu: Date.now() - 4 * 86400000 },
+      ]);
+      Store.set("perkembangan", [
+        { anak: "YTM-001", tanggal: hari(3), aspek: "Pendidikan", status: "Sangat Baik", catatan: "Nilai matematika naik, aktif di kelas", orta: false, waktu: Date.now() - 3 * 86400000 },
+        { anak: "YTM-006", tanggal: hari(6), aspek: "Kesehatan", status: "Perlu Perhatian", catatan: "Sering tidak fit, perlu kontrol rutin", orta: false, waktu: Date.now() - 6 * 86400000 },
+        { anak: "YTM-003", tanggal: hari(8), aspek: "Kondisi Sosial", status: "Baik", catatan: "Adaptif dengan anak lain di asrama", orta: false, waktu: Date.now() - 8 * 86400000 },
+      ]);
+      Store.set("seeded", true);
+    }
+
+    /* ================= INIT ================= */
+    seed();
+
+    const selProv = document.querySelector(".select-provinsi");
+    DAFTAR_PROVINSI.forEach((p) => {
+      const o = document.createElement("option");
+      o.value = p;
+      o.textContent = p;
+      selProv.appendChild(o);
+    });
+
+    document.querySelectorAll("input[type='date']").forEach((inp) => {
+      if (!inp.value) inp.value = new Date().toISOString().slice(0, 10);
+    });
+
+    renderAnak();
+    renderKebutuhan();
+    renderKegiatan();
+    renderAnggaran();
+    renderPerkembangan();
+    renderDashboard();
+    renderOrta();
+    bukaView("dashboard");
+  </script>
+</body>
+</html>

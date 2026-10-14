@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Donatur — Smart Yatim</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="assets/tailwind.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="pb-10">
+  <header class="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-lg items-center gap-2 px-4">
+      <button onclick="kembali()" aria-label="Kembali" class="-ml-1 rounded-xl p-2 text-slate-600 hover:bg-slate-100">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+      </button>
+      <div>
+        <h1 class="text-base font-extrabold text-slate-800">Profil Donatur</h1>
+        <p class="text-[11px] text-slate-400">Kelola data diri Anda</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-lg space-y-4 px-4 py-5">
+    <!-- Kartu profil -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-purple via-purple-600 to-brand-green p-5 text-white">
+      <div class="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-white/10"></div>
+      <div class="relative flex items-center gap-3.5">
+        <div id="avatar-profil" class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/20 text-xl font-extrabold"></div>
+        <div class="min-w-0">
+          <p id="nama-profil" class="truncate text-lg font-extrabold"></p>
+          <p id="email-profil" class="truncate text-xs text-white/75"></p>
+          <span class="mt-1.5 inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-bold">Orang Tua Asuh</span>
+        </div>
+      </div>
+      <div class="relative mt-4 grid grid-cols-3 gap-2 text-center">
+        <div class="rounded-xl bg-white/15 p-2.5">
+          <p id="stat-saldo" class="text-sm font-extrabold"></p>
+          <p class="mt-0.5 text-[10px] text-white/70">Saldo</p>
+        </div>
+        <div class="rounded-xl bg-white/15 p-2.5">
+          <p id="stat-anak" class="text-sm font-extrabold"></p>
+          <p class="mt-0.5 text-[10px] text-white/70">Anak Asuh</p>
+        </div>
+        <div class="rounded-xl bg-white/15 p-2.5">
+          <p id="stat-transaksi" class="text-sm font-extrabold"></p>
+          <p class="mt-0.5 text-[10px] text-white/70">Transaksi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form edit -->
+    <section class="card p-4">
+      <h3 class="text-sm font-extrabold text-slate-800">Ubah Data Diri</h3>
+      <div class="mt-3 space-y-3">
+        <div>
+          <label for="in-nama" class="mb-1.5 block text-xs font-semibold text-slate-600">Nama Lengkap</label>
+          <input id="in-nama" type="text" class="input" />
+        </div>
+        <div>
+          <label for="in-email" class="mb-1.5 block text-xs font-semibold text-slate-600">Email</label>
+          <input id="in-email" type="email" class="input" />
+        </div>
+        <div>
+          <label for="in-hp" class="mb-1.5 block text-xs font-semibold text-slate-600">No. Handphone</label>
+          <input id="in-hp" type="tel" class="input" placeholder="08xx xxxx xxxx" />
+        </div>
+        <div>
+          <label for="in-alamat" class="mb-1.5 block text-xs font-semibold text-slate-600">Alamat</label>
+          <textarea id="in-alamat" rows="2" class="input resize-none" placeholder="Alamat domisili"></textarea>
+        </div>
+        <button id="btn-simpan" class="btn btn-primary w-full py-3">Simpan Perubahan</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    function kembali() {
+      if (history.length > 1) history.back();
+      else window.location.href = "beranda.html";
+    }
+
+    const defaultProfil = {
+      nama: "Budi Santoso",
+      email: "budi.santoso@email.com",
+      hp: "0812 3456 7890",
+      alamat: "Jl. Melati No. 12, Jakarta Selatan",
+    };
+    let profil = Store.get("profilDonatur", defaultProfil);
+
+    function render() {
+      const inisial = profil.nama.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+      document.getElementById("avatar-profil").textContent = inisial;
+      document.getElementById("nama-profil").textContent = profil.nama;
+      document.getElementById("email-profil").textContent = profil.email;
+      document.getElementById("stat-saldo").textContent = UI.formatRupiah(Store.getSaldo());
+      document.getElementById("stat-anak").textContent = Store.getAnakSaya().length;
+      document.getElementById("stat-transaksi").textContent = Store.getRiwayat().length;
+
+      document.getElementById("in-nama").value = profil.nama;
+      document.getElementById("in-email").value = profil.email;
+      document.getElementById("in-hp").value = profil.hp;
+      document.getElementById("in-alamat").value = profil.alamat;
+    }
+    render();
+
+    document.getElementById("btn-simpan").addEventListener("click", () => {
+      const nama = document.getElementById("in-nama").value.trim();
+      const email = document.getElementById("in-email").value.trim();
+      if (!nama || !email) {
+        UI.toast("Nama dan email wajib diisi", "error");
+        return;
+      }
+      profil = {
+        nama,
+        email,
+        hp: document.getElementById("in-hp").value.trim(),
+        alamat: document.getElementById("in-alamat").value.trim(),
+      };
+      Store.set("profilDonatur", profil);
+      render();
+      UI.toast("Perubahan data diri tersimpan ✅", "sukses");
+    });
+  </script>
+</body>
+</html>

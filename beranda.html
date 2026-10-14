@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda Donatur — Smart Yatim</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="assets/tailwind.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="pb-10">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-lg items-center justify-between px-4">
+      <div class="flex items-center gap-3">
+        <button id="btn-drawer" aria-label="Buka menu" class="-ml-1 rounded-xl p-2 text-slate-600 hover:bg-slate-100">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+        <a href="index.html" class="flex items-center gap-2" title="Kembali ke pilihan pengguna">
+          <img src="assets/images/logo.svg" alt="Logo Smart Yatim" class="h-9 w-9 rounded-lg bg-brand-green/10 p-1" />
+          <span class="text-base font-extrabold text-slate-800">Smart Yatim</span>
+        </a>
+      </div>
+
+      <div class="relative">
+        <button id="btn-notifikasi" aria-label="Notifikasi" class="relative rounded-xl p-2 text-slate-600 hover:bg-slate-100">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+          <span class="absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">2</span>
+        </button>
+        <div id="panel-notifikasi" class="card absolute right-0 mt-2 hidden w-72 p-2 shadow-lg">
+          <p class="px-2 py-1.5 text-xs font-bold text-slate-500">Notifikasi</p>
+          <div class="rounded-xl bg-brand-green-light px-3 py-2.5">
+            <p class="text-xs font-semibold text-slate-700">Donasi Anda tersalurkan ✅</p>
+            <p class="mt-0.5 text-[11px] text-slate-500">Donasi untuk Muhammad Rizky telah diterima. 5 menit lalu</p>
+          </div>
+          <div class="mt-1 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+            <p class="text-xs font-semibold text-slate-700">Laporan bulanan tersedia</p>
+            <p class="mt-0.5 text-[11px] text-slate-500">Laporan perkembangan anak asuh Oktober 2026. 2 jam lalu</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Konten utama -->
+  <main class="mx-auto max-w-lg space-y-6 px-4 py-6">
+    <!-- Sapaan -->
+    <div>
+      <p class="text-sm text-slate-500">Assalamu'alaikum,</p>
+      <h1 id="sapaan-nama" class="text-xl font-extrabold text-slate-800">Donatur</h1>
+    </div>
+
+    <!-- Widget Saldo -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-green via-emerald-600 to-brand-green-dark p-5 text-white shadow-md">
+      <div class="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-white/10"></div>
+      <div class="absolute -bottom-12 right-16 h-28 w-28 rounded-full bg-white/5"></div>
+
+      <div class="relative">
+        <p class="text-xs font-medium text-white/75">Saldo Aktif</p>
+        <p class="mt-1 text-3xl font-extrabold tracking-tight" id="saldo-nilai">Rp0</p>
+
+        <div class="mt-5 flex gap-3">
+          <button id="btn-topup" class="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-brand-green shadow-sm transition active:scale-[.98]">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+            Top Up
+          </button>
+          <button id="btn-riwayat" class="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-white/40 bg-white/10 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/20 active:scale-[.98]">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Riwayat
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner Kampanye -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-purple via-purple-600 to-brand-green p-5 text-white shadow-md">
+      <div class="absolute -right-6 -top-8 rotate-12 text-7xl opacity-20">🎨</div>
+      <div class="absolute -bottom-6 right-20 -rotate-12 text-5xl opacity-20">✨</div>
+      <p class="text-[10px] font-bold uppercase tracking-[.2em] text-white/70">Kampanye</p>
+      <h2 class="mt-1.5 max-w-[75%] text-lg font-extrabold leading-snug">Bersama... Melukis Masa Depan Mereka</h2>
+      <p class="mt-1.5 max-w-[75%] text-xs leading-relaxed text-white/80">Bergabunglah mendampingi anak asuh meraih pendidikan dan masa depan yang lebih cerah.</p>
+      <button id="btn-donasi-kampanye" class="mt-4 rounded-xl bg-white px-4 py-2 text-xs font-bold text-brand-purple shadow-sm transition active:scale-[.98]">Ikut Berkontribusi</button>
+    </section>
+
+    <!-- Rekomendasi Anak Asuh -->
+    <section>
+      <div class="mb-3 flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-extrabold text-slate-800">Rekomendasi Anak Asuh</h2>
+          <p class="text-xs text-slate-400">Mari bantu mereka hari ini</p>
+        </div>
+        <button id="btn-lainnya" class="text-xs font-bold text-brand-green hover:underline">Lainnya →</button>
+      </div>
+      <div id="grid-anak" class="grid grid-cols-2 gap-3"></div>
+    </section>
+  </main>
+
+  <footer class="mx-auto max-w-lg px-4 pb-4 text-center text-[11px] text-slate-400">
+    © 2026 Rumah Yatim — Smart Yatim
+  </footer>
+
+  <!-- Drawer Sidebar -->
+  <div id="drawer-overlay" class="fixed inset-0 z-40 hidden bg-black/40" onclick="UI.closeDrawer('drawer')"></div>
+  <aside id="drawer" class="fixed inset-y-0 left-0 z-50 flex w-72 -translate-x-full flex-col bg-white shadow-2xl transition-transform duration-300">
+    <div class="border-b border-slate-100 bg-gradient-to-br from-brand-green to-brand-purple p-5 text-white">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/logo.svg" alt="Logo Smart Yatim" class="h-10 w-10 rounded-xl bg-white/20 p-1.5" />
+        <div>
+          <p class="text-sm font-extrabold leading-tight">Smart Yatim</p>
+          <p class="text-[11px] leading-tight text-white/70">Yatim Orta Platform</p>
+        </div>
+      </div>
+      <div id="profil-drawer" class="mt-4 flex items-center gap-2.5 rounded-xl bg-white/15 p-3"></div>
+    </div>
+
+    <nav class="flex-1 space-y-1 p-3 text-sm font-semibold text-slate-600">
+      <a href="beranda.html" class="flex items-center gap-3 rounded-xl bg-brand-green-light px-3 py-2.5 text-brand-green">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>
+        Beranda
+      </a>
+      <a href="anak-asuh-saya.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Anak Asuh Saya
+      </a>
+      <a href="riwayat.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33"/></svg>
+        Riwayat Donasi
+      </a>
+      <a href="profil.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+        Profil Donatur
+      </a>
+      <a href="tentang.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+        Tentang Rumah Yatim
+      </a>
+    </nav>
+
+    <div class="border-t border-slate-100 p-3">
+      <a href="index.html" class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-purple hover:bg-brand-purple-light">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+        Ganti Pengguna
+      </a>
+    </div>
+  </aside>
+
+  <!-- Modal Top Up -->
+  <div id="modal-topup" class="fixed inset-0 z-50 hidden items-end justify-center bg-black/50 p-0 sm:items-center sm:p-4">
+    <div class="card w-full max-w-sm rounded-b-none p-5 sm:rounded-3xl">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-base font-extrabold text-slate-800">Top Up Saldo</h3>
+        <button id="topup-tutup" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">Saldo saat ini: <span id="topup-saldo-awal" class="font-bold text-brand-green"></span></p>
+
+      <div class="mt-3 grid grid-cols-3 gap-2">
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="25000">Rp25.000</button>
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="50000">Rp50.000</button>
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="100000">Rp100.000</button>
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="250000">Rp250.000</button>
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="500000">Rp500.000</button>
+        <button class="chip-nominal rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600 hover:border-brand-green" data-nominal="1000000">Rp1.000.000</button>
+      </div>
+
+      <label for="topup-nominal" class="mb-1.5 mt-4 block text-xs font-semibold text-slate-600">Nominal lainnya</label>
+      <input id="topup-nominal" type="number" min="10000" class="input" placeholder="Masukkan nominal (min. Rp10.000)" />
+
+      <button id="topup-konfirmasi" class="btn btn-primary mt-4 w-full py-3">Konfirmasi Top Up</button>
+      <p class="mt-2 text-center text-[10px] text-slate-400">Simulasi — transaksi tidak benar-benar diproses</p>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    /* Sapaan & profil dari pilihan role di halaman awal */
+    const pilihan = Store.get("pilihRole", { role: "donatur", label: "Donatur" });
+    document.getElementById("sapaan-nama").textContent = pilihan.label;
+    document.getElementById("profil-drawer").innerHTML = `
+      ${UI.avatarHtml(pilihan.label, "l", "h-9 w-9 text-xs")}
+      <div>
+        <p class="text-xs font-bold leading-tight">${UI.escapeHtml(pilihan.label)}</p>
+        <p class="text-[10px] leading-tight text-white/70">Portal Donatur</p>
+      </div>`;
+
+    /* --- Saldo --- */
+    function renderSaldo() {
+      document.getElementById("saldo-nilai").textContent = UI.formatRupiah(Store.getSaldo());
+      document.getElementById("topup-saldo-awal").textContent = UI.formatRupiah(Store.getSaldo());
+    }
+    renderSaldo();
+
+    /* --- Grid anak --- */
+    document.getElementById("grid-anak").innerHTML = DATA_ANAK.slice(0, 4)
+      .map((a) => UI.kartuAnak(a))
+      .join("");
+
+    /* --- Drawer --- */
+    document.getElementById("btn-drawer").addEventListener("click", () => UI.toggleDrawer("drawer"));
+
+    /* --- Notifikasi --- */
+    const panelNotif = document.getElementById("panel-notifikasi");
+    document.getElementById("btn-notifikasi").addEventListener("click", (e) => {
+      e.stopPropagation();
+      panelNotif.classList.toggle("hidden");
+    });
+    document.addEventListener("click", (e) => {
+      if (!panelNotif.contains(e.target)) panelNotif.classList.add("hidden");
+    });
+
+    /* --- Top Up --- */
+    const modalTopup = document.getElementById("modal-topup");
+    let nominalTerpilih = 0;
+
+    document.getElementById("btn-topup").addEventListener("click", () => {
+      nominalTerpilih = 0;
+      document.getElementById("topup-nominal").value = "";
+      document.querySelectorAll(".chip-nominal").forEach((c) => {
+        c.classList.remove("border-brand-green", "bg-brand-green-light", "text-brand-green");
+        c.classList.add("border-slate-200");
+      });
+      renderSaldo();
+      modalTopup.classList.remove("hidden");
+      modalTopup.classList.add("flex");
+    });
+
+    function tutupTopup() {
+      modalTopup.classList.add("hidden");
+      modalTopup.classList.remove("flex");
+    }
+    document.getElementById("topup-tutup").addEventListener("click", tutupTopup);
+    modalTopup.addEventListener("click", (e) => {
+      if (e.target === modalTopup) tutupTopup();
+    });
+
+    document.querySelectorAll(".chip-nominal").forEach((chip) =>
+      chip.addEventListener("click", () => {
+        nominalTerpilih = Number(chip.dataset.nominal);
+        document.getElementById("topup-nominal").value = "";
+        document.querySelectorAll(".chip-nominal").forEach((c) => {
+          c.classList.remove("border-brand-green", "bg-brand-green-light", "text-brand-green");
+          c.classList.add("border-slate-200");
+        });
+        chip.classList.add("border-brand-green", "bg-brand-green-light", "text-brand-green");
+        chip.classList.remove("border-slate-200");
+      })
+    );
+
+    document.getElementById("topup-nominal").addEventListener("input", (e) => {
+      nominalTerpilih = Number(e.target.value || 0);
+      document.querySelectorAll(".chip-nominal").forEach((c) => {
+        c.classList.remove("border-brand-green", "bg-brand-green-light", "text-brand-green");
+        c.classList.add("border-slate-200");
+      });
+    });
+
+    document.getElementById("topup-konfirmasi").addEventListener("click", () => {
+      const nominal = nominalTerpilih || Number(document.getElementById("topup-nominal").value || 0);
+      if (!nominal || nominal < 10000) {
+        UI.toast("Minimal top up Rp10.000", "error");
+        return;
+      }
+      Store.topUp(nominal);
+      Store.tambahRiwayat({ jenis: "Top Up", keterangan: "Top up saldo", nominal, status: "Berhasil" });
+      renderSaldo();
+      tutupTopup();
+      UI.toast(`Top up ${UI.formatRupiah(nominal)} berhasil 🎉`, "sukses");
+    });
+
+    /* --- Aksi lain --- */
+    document.getElementById("btn-riwayat").addEventListener("click", () =>
+      (window.location.href = "riwayat.html")
+    );
+    document.getElementById("btn-lainnya").addEventListener("click", () =>
+      (window.location.href = "catalog.html")
+    );
+    document.getElementById("btn-donasi-kampanye").addEventListener("click", () =>
+      (window.location.href = "catalog.html")
+    );
+  </script>
+</body>
+</html>

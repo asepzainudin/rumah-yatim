@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Anak Asuh — Smart Yatim</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="assets/tailwind.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="pb-28">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-lg items-center justify-between px-4">
+      <div class="flex items-center gap-2">
+        <button onclick="kembali()" aria-label="Kembali" class="-ml-1 rounded-xl p-2 text-slate-600 hover:bg-slate-100">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        </button>
+        <h1 class="text-base font-extrabold text-slate-800">Detail Anak Asuh</h1>
+      </div>
+      <button id="btn-share" aria-label="Bagikan" class="rounded-xl p-2 text-slate-600 hover:bg-slate-100">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-lg px-4 py-5">
+    <!-- Profil utama -->
+    <section class="card overflow-hidden">
+      <div class="relative flex flex-col items-center bg-gradient-to-br from-brand-green/15 to-brand-purple/15 px-5 pb-5 pt-6">
+        <span id="badge-sebab" class="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-brand-purple shadow-sm"></span>
+        <div id="foto-anak" class="flex h-24 w-24 items-center justify-center rounded-full text-3xl font-extrabold text-white shadow-md"></div>
+        <h2 id="nama-anak" class="mt-3 text-xl font-extrabold text-slate-800"></h2>
+        <p id="lokasi-anak" class="mt-0.5 text-xs text-slate-500"></p>
+        <p id="id-anak" class="mt-1 rounded-full bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold text-slate-500"></p>
+      </div>
+
+      <div class="p-4">
+        <div class="flex items-end justify-between">
+          <div>
+            <p class="text-xs text-slate-400">Dana terkumpul</p>
+            <p id="dana-terkumpul" class="text-2xl font-extrabold text-brand-green"></p>
+          </div>
+          <p id="dana-target" class="text-xs font-semibold text-slate-500"></p>
+        </div>
+        <div class="progress-track mt-2.5"><div id="progress" class="progress-fill" style="width:0%"></div></div>
+        <div class="mt-3 flex items-center justify-between rounded-xl bg-brand-gray px-3 py-2.5">
+          <div class="flex items-center gap-1.5 text-xs text-slate-600">
+            <svg class="h-4 w-4 text-brand-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span id="jumlah-donatur"></span>
+          </div>
+          <span id="persen-tercapai" class="text-xs font-bold text-brand-green"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keterangan sebab -->
+    <section class="card mt-4 p-4">
+      <h3 class="text-sm font-extrabold text-slate-800">Keterangan <span id="label-sebab"></span></h3>
+      <p id="keterangan-sebab" class="mt-1.5 text-xs leading-relaxed text-slate-500"></p>
+    </section>
+
+    <!-- Data diri -->
+    <section class="card mt-4 p-4">
+      <h3 class="text-sm font-extrabold text-slate-800">Profil Data Diri</h3>
+      <dl id="data-diri" class="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-xs"></dl>
+    </section>
+
+    <!-- Riwayat kegiatan -->
+    <section class="mt-5">
+      <h3 class="text-base font-extrabold text-slate-800">Riwayat Kegiatan</h3>
+      <p class="text-xs text-slate-400">Dokumentasi aktivitas anak asuh</p>
+      <div id="daftar-kegiatan" class="mt-3 space-y-3"></div>
+    </section>
+  </main>
+
+  <!-- Tombol aksi sticky -->
+  <div class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-100 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-lg items-center gap-3 px-4 py-3">
+      <div class="flex-1">
+        <p id="info-bawah" class="text-[11px] leading-tight text-slate-400"></p>
+        <p id="nominal-bawah" class="text-sm font-extrabold text-slate-800"></p>
+      </div>
+      <button id="btn-donasi" class="btn btn-primary px-10 py-3 text-base font-extrabold tracking-wide">
+        ❤ DONASI
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Metode Donasi -->
+  <div id="modal-metode" class="fixed inset-0 z-50 hidden items-end justify-center bg-black/50 p-0 sm:items-center sm:p-4">
+    <div class="card w-full max-w-sm rounded-b-none p-5 sm:rounded-3xl">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-extrabold text-slate-800">Pilih Metode Donasi</h3>
+          <p class="text-xs text-slate-400">Simulasi — tidak ada transaksi nyata</p>
+        </div>
+        <button id="metode-tutup" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-2.5">
+        <button onclick="pilihMetode('qris')" class="flex w-full items-center gap-3 rounded-xl border border-slate-200 p-3 text-left transition hover:border-brand-green">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg">📱</div>
+          <div class="flex-1">
+            <p class="text-sm font-bold text-slate-800">QRIS</p>
+            <p class="text-[11px] text-slate-400">Scan kode QR dengan e-wallet / m-banking</p>
+          </div>
+          <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+
+        <button onclick="pilihMetode('transfer')" class="flex w-full items-center gap-3 rounded-xl border border-slate-200 p-3 text-left transition hover:border-brand-green">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg">🏦</div>
+          <div class="flex-1">
+            <p class="text-sm font-bold text-slate-800">Transfer Bank</p>
+            <p class="text-[11px] text-slate-400">BCA 123-456-7890 a.n. Rumah Yatim</p>
+          </div>
+          <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+
+        <button onclick="pilihMetode('saldo')" class="flex w-full items-center gap-3 rounded-xl border border-slate-200 p-3 text-left transition hover:border-brand-green">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green-light text-lg">💚</div>
+          <div class="flex-1">
+            <p class="text-sm font-bold text-slate-800">Donasi dari Saldo</p>
+            <p id="saldo-modal" class="text-[11px] text-slate-400"></p>
+          </div>
+          <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+
+        <button onclick="pilihMetode('ota')" class="flex w-full items-center gap-3 rounded-xl border border-slate-200 p-3 text-left transition hover:border-brand-purple">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-purple-light text-lg">👨‍👩‍👦</div>
+          <div class="flex-1">
+            <p class="text-sm font-bold text-slate-800">Daftar Orang Tua Asuh (OTA)</p>
+            <p class="text-[11px] text-slate-400">Komitmen donasi rutin minimal 4 bulan</p>
+          </div>
+          <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const anak = DATA_ANAK.find((a) => a.id === params.get("id")) || DATA_ANAK[0];
+
+    function kembali() {
+      if (history.length > 1) history.back();
+      else window.location.href = "catalog.html";
+    }
+
+    /* Render profil */
+    const terkumpul = Store.getTerkumpul(anak);
+    const pct = UI.persen(anak.target, terkumpul);
+
+    document.getElementById("badge-sebab").textContent = anak.sebab;
+    document.getElementById("label-sebab").textContent = anak.sebab;
+    document.getElementById("foto-anak").outerHTML =
+      UI.avatarHtml(anak.nama, anak.jenis, "h-24 w-24 text-3xl").replace('class="h-24 w-24 text-3xl"', 'id="foto-anak" class="h-24 w-24 text-3xl shadow-md"');
+    document.getElementById("nama-anak").textContent = anak.nama;
+    document.getElementById("lokasi-anak").textContent = `${anak.kota}, ${anak.provinsi}`;
+    document.getElementById("id-anak").textContent = anak.id;
+    document.getElementById("dana-terkumpul").textContent = UI.formatRupiah(terkumpul);
+    document.getElementById("dana-target").textContent = "dari " + UI.formatRupiah(anak.target);
+    document.getElementById("progress").style.width = pct + "%";
+    document.getElementById("jumlah-donatur").textContent = `${anak.jumlahDonatur} donatur`;
+    document.getElementById("persen-tercapai").textContent = pct + "% tercapai";
+    document.getElementById("keterangan-sebab").textContent = anak.keteranganSebab;
+
+    const barisData = [
+      ["Tanggal Lahir", anak.tanggalLahir],
+      ["Umur", anak.umur + " tahun"],
+      ["Sekolah", anak.sekolah],
+      ["Alamat", anak.alamat],
+    ];
+    document.getElementById("data-diri").innerHTML = barisData
+      .map(
+        ([label, nilai]) => `
+        <div>
+          <dt class="text-[10px] font-semibold uppercase tracking-wide text-slate-400">${label}</dt>
+          <dd class="mt-0.5 font-semibold text-slate-700">${UI.escapeHtml(nilai)}</dd>
+        </div>`
+      )
+      .join("");
+
+    document.getElementById("info-bawah").textContent = "Dukung " + anak.nama + " mulai dari";
+    document.getElementById("nominal-bawah").textContent = UI.formatRupiah(anak.target);
+
+    /* Riwayat kegiatan */
+    document.getElementById("daftar-kegiatan").innerHTML = anak.kegiatan
+      .map(
+        (k) => `
+      <article class="card p-4">
+        <div class="flex items-center justify-between">
+          <span class="rounded-full bg-brand-green-light px-2.5 py-0.5 text-[10px] font-bold text-brand-green">${UI.escapeHtml(k.tanggal)}</span>
+          <span class="text-[10px] text-slate-400">Dokumentasi</span>
+        </div>
+        <h4 class="mt-2 text-sm font-bold text-slate-800">${UI.escapeHtml(k.judul)}</h4>
+        <p class="mt-1 text-xs leading-relaxed text-slate-500">${UI.escapeHtml(k.deskripsi)}</p>
+        <div class="mt-3 grid grid-cols-3 gap-2">
+          <div class="flex h-16 items-center justify-center rounded-lg bg-gradient-to-br from-brand-green/20 to-brand-purple/20 text-xl">📸</div>
+          <div class="flex h-16 items-center justify-center rounded-lg bg-gradient-to-br from-brand-purple/20 to-emerald-100 text-xl">🏫</div>
+          <div class="flex h-16 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-100 to-brand-green/20 text-xl">📚</div>
+        </div>
+      </article>`
+      )
+      .join("");
+
+    /* Modal metode */
+    const modalMetode = document.getElementById("modal-metode");
+    document.getElementById("btn-donasi").addEventListener("click", () => {
+      document.getElementById("saldo-modal").textContent = "Saldo Anda: " + UI.formatRupiah(Store.getSaldo());
+      modalMetode.classList.remove("hidden");
+      modalMetode.classList.add("flex");
+    });
+    function tutupMetode() {
+      modalMetode.classList.add("hidden");
+      modalMetode.classList.remove("flex");
+    }
+    document.getElementById("metode-tutup").addEventListener("click", tutupMetode);
+    modalMetode.addEventListener("click", (e) => {
+      if (e.target === modalMetode) tutupMetode();
+    });
+
+    function pilihMetode(metode) {
+      tutupMetode();
+      if (metode === "qris") {
+        UI.toast("QRIS dipilih — scan & bayar (simulasi)", "info");
+      } else if (metode === "transfer") {
+        UI.toast("Transfer dipilih — ke BCA 123-456-7890 (simulasi)", "info");
+      } else if (metode === "saldo") {
+        window.location.href = `donasi-saldo.html?id=${anak.id}`;
+      } else if (metode === "ota") {
+        window.location.href = `form-ota.html?id=${anak.id}`;
+      }
+    }
+
+    document.getElementById("btn-share").addEventListener("click", () =>
+      UI.toast("Tautan profil disalin (simulasi)", "sukses")
+    );
+  </script>
+</body>
+</html>
